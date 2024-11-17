@@ -14,8 +14,13 @@ class Donacion{
 }
 
 class VentaDeDescarga{
-    const precioFijo
 
-    method totalReaudado(contenido) = if(contenido.esPopular()) contenido.cotizar() else 0
-    method cotizar(contenido) = contenido.visitas() * precioFijo
+    method totalRecaudado(contenido) = if(contenido.esPopular()) contenido.cotizar() else 0
+    method cotizar(contenido) = contenido.visitas() * self.precioFijo(contenido.precio())
+    method precioFijo(precio) = precio.max(5)
+}
+
+class Alquiler inherits VentaDeDescarga{
+    override method precioFijo(precio) = precio.max(1)
+    override method totalRecaudado(contenido) = super(contenido) && contenido.esVideo()
 }
