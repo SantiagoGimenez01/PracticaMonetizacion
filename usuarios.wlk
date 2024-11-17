@@ -15,6 +15,8 @@ object sistema{
 class Usuario{
     const contenidos = []
     var property verificado = false
+    const email
+    const nombre
 
     method saldoTotal() = contenidos.sum({contenido => contenido.totalReaudado()})
     method esSuperUsuario() = contenidos.count({contenido => contenido.esPopular()}) >= 10
