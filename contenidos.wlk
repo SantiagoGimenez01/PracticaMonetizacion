@@ -1,12 +1,16 @@
+import usuarios.*
+import monetizaciones.*
+
 class Contenido{
   const tags = []
   const titulo
-  const property visitas
-  var property esOfensivo  
-  var property monetizacion
+  var property visitas = 0
+  var property esOfensivo = false
+  var monetizacion
 
   method esPopular()
   method totalRecaudado() = monetizacion.totalRecaudado(self)
+  method cambiarMonetizacion(otra){ monetizacion = otra }
 }
 
 class Video inherits Contenido{
@@ -22,3 +26,7 @@ class Imagen inherits Contenido{
   method tieneTagsDeModa() = tagsDeModa.all({tag => tags.contains(tag)})
   override method totalRecaudado() = super().min(4000)
 }
+
+const usuario = new Usuario()
+const contenido = new Video(monetizacion = publicidad, titulo = "Hola")
+const otroContenido = new Video(monetizacion = publicidad, titulo = "Chau")
